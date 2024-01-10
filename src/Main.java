@@ -2,13 +2,17 @@ public class Main {
 
   public static void main(String[] args) throws InterruptedException {
     Database database = new Database();
-    database.createAccount("John");
-    database.createAccount("Jane");
+    String john = "John";
+    String jane = "Jane";
+    database.createAccount(john);
+    database.createAccount(jane);
 
-    database.deposit(100, "John");
-    database.deposit(200, "Jane");
+    database.deposit(100, john);
+    database.deposit(200, jane);
+    database.deposit(300, john);
 
-    database.withdraw(10, "John");
-    database.withdraw(150, "Jane");
+    database.withdraw(10, jane);
+    database.withdraw(150, jane);
+    database.withdraw(250, john);
   }
 }

@@ -44,7 +44,6 @@ public class Database {
   private void displayTime(Account account, TransactionType type, int amount) {
     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
     String timestamp = dtf.format(LocalDateTime.now());
-    System.out.println(timestamp); // Print current timestamp in DD/MM/YYYY HH:MM:SS
-    System.out.printf("User: %s, Transaction type: %s, amount: %d\n", account.name, type, amount);
+    System.out.printf("[%s] Transaction type: %s, amount: %d, User: %s,\n", timestamp, type, amount, account.name);
   }
 }

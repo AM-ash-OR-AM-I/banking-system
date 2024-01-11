@@ -14,7 +14,7 @@ public class Account implements AccountInterface {
   synchronized public void deposit(int amount) {
     balance += amount;
     sleep(); // Simulate processing time
-    displayTransactionDetails(balance, amount, TransactionType.DEPOSIT);
+    Util.log("%s of %d completed, Balance for %s: %d".formatted(TransactionType.DEPOSIT, amount, name, balance));
   }
 
   @Override
@@ -25,12 +25,8 @@ public class Account implements AccountInterface {
       return -1;
     }
     sleep(); // Simulate processing time
-    displayTransactionDetails(balance, amount, TransactionType.DEPOSIT);
+    Util.log("%s of %d completed, Balance for %s: %d".formatted(TransactionType.WITHDRAW, amount, name, balance));
     return 0;
-  }
-
-  private void displayTransactionDetails(int balance, int amount, TransactionType type) {
-    System.out.println("%s %s = %d, Balance = %d\n".formatted(name, type, amount, balance));
   }
 
   private void sleep() {

@@ -1,5 +1,3 @@
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 enum TransactionType {
@@ -23,7 +21,7 @@ public class Database {
     for (Account account : accounts) {
       if (account.name.equals(name)) {
         // Create a new thread to deposit
-        displayTime(account, TransactionType.DEPOSIT, amount);
+        Util.log("Transaction type: %s, amount: %d, User: %s".formatted(TransactionType.DEPOSIT, amount, name));
         ThreadDeposit transaction = new ThreadDeposit(account, amount);
         transaction.start();
       }
@@ -34,16 +32,11 @@ public class Database {
     for (Account account : accounts) {
       if (account.name.equals(name)) {
         // Create a new thread to withdraw
-        displayTime(account, TransactionType.WITHDRAW, amount);
+        Util.log("Transaction type: %s, amount: %d, User: %s".formatted(TransactionType.WITHDRAW, amount, name));
         ThreadWithdraw transaction = new ThreadWithdraw(account, amount);
         transaction.start();
       }
     }
   }
 
-  private void displayTime(Account account, TransactionType type, int amount) {
-    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
-    String timestamp = dtf.format(LocalDateTime.now());
-    System.out.printf("[%s] Transaction type: %s, amount: %d, User: %s,\n", timestamp, type, amount, account.name);
-  }
 }
